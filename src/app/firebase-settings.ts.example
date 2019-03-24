@@ -1,0 +1,11 @@
+export const firebaseSettings = {
+	// values can be found in the Firebase web console	
+  firebase: {
+  	apiKey: "",
+    authDomain: "",
+    databaseURL: "",
+    projectId: "",
+    storageBucket: "",
+    messagingSenderId: ""
+  }
+};
