@@ -1,0 +1,12 @@
+tbody > tr:first-child {
+	background-color: #c3e6cb;
+	font-weight: bold;
+}
+
+h2 {
+	margin-bottom: 20px;
+}
+
+.pings-align-center {
+	text-align: center;
+}

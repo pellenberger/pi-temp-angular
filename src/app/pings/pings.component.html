@@ -1,0 +1,31 @@
+<div>
+	<h2>Last 5 pings</h2>
+	<table class="table table-bordered">
+		<thead class="thead-dark">
+			<tr>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th colspan="3" class="pings-align-center">Delays in seconds</th>
+			</tr>
+			<tr>
+				<th scope="col">Date</th>
+				<th scope="col">IP</th>
+				<th scope="col">Room</th>
+				<th scope="col">Measure</th>
+				<th scope="col">Push</th>
+				<th scope="col">Ping</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let ping of pings | async">
+				<td>{{ping.datetime}}</td>
+				<td>{{ping.ip}}</td>
+				<td>{{ping.room}}</td>
+				<td>{{ping.delayMeasure}}</td>
+				<td>{{ping.delayPush}}</td>
+				<td>{{ping.delayPing}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
