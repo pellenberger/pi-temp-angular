@@ -18,7 +18,7 @@ export class LastMeasuresComponent implements OnInit {
 
 	public countOptions: Array<number> = [5, 10, 15, 20, 30, 50, 100];
 
-  private selectedCount: number;
+  public selectedCount: number;
 
   private afs: AngularFirestore;
 
