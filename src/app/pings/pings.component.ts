@@ -24,7 +24,7 @@ export class PingsComponent implements OnInit {
 	constructor(private afs: AngularFirestore) {
 		this.pingsCollection = afs.collection<Ping>('pings', ref =>
 			ref
-			.orderBy('datetime', 'desc')
+			.orderBy('timestamp', 'desc')
 			.limit(5));  	
   }
 

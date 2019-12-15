@@ -1,10 +1,15 @@
 <div>
 	<h2>Last measures</h2>
-	<!--<div class="row">
+	<div class="row">
   		<div class="col">
-    		<ng-select [items]="items"></ng-select>
+		    <div ngbDropdown class="d-inline-block">
+		      <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Last {{selectedCount}} measures</button>
+		      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+		        <button *ngFor='let countOption of countOptions' (click)="selectCountOption(countOption)" ngbDropdownItem>{{countOption}}</button>
+		      </div>
+		    </div>
   		</div>
-  	</div>-->
+  	</div>
 
 	<table class="table table-bordered">
 		<thead class="thead-dark">
