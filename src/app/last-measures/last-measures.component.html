@@ -22,7 +22,7 @@
 		<tbody>
 			<tr *ngFor="let measure of measures | async">
 				<td>{{measure.datetime}}</td>
-				<td>{{measure.temp}}</td>
+				<td>{{measure.temp | number:'2.1-1'}}</td>
 				<td>{{measure.room}}</td>
 			</tr>
 		</tbody>
