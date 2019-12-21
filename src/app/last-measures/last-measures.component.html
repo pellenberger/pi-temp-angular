@@ -3,9 +3,9 @@
 	<div class="row">
   		<div class="col">
 		    <div ngbDropdown class="d-inline-block">
-		      <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Last {{selectedCount}} measures</button>
-		      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-		        <button *ngFor='let countOption of countOptions' (click)="selectCountOption(countOption)" ngbDropdownItem>{{countOption}}</button>
+		      <button class="btn btn-outline-primary" id="dropdownCount" ngbDropdownToggle>Last {{countLimit$.getValue()}} measures</button>
+		      <div ngbDropdownMenu aria-labelledby="dropdownCount">
+		        <button *ngFor='let countOption of countOptions' (click)="countLimit(countOption)" ngbDropdownItem>{{countOption}}</button>
 		      </div>
 		    </div>
   		</div>
@@ -20,7 +20,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr *ngFor="let measure of measures | async">
+			<tr *ngFor="let measure of measures$ | async">
 				<td>{{measure.datetime}}</td>
 				<td>{{measure.temp | number:'2.1-1'}}</td>
 				<td>{{measure.room}}</td>

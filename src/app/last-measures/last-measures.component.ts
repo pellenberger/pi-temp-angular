@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject, combineLatest } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 export interface Measure { 
 	datetime: string;
@@ -14,37 +15,29 @@ export interface Measure {
   templateUrl: './last-measures.component.html',
   styleUrls: ['./last-measures.component.css']
 })
-export class LastMeasuresComponent implements OnInit {
+export class LastMeasuresComponent {
 
-	public countOptions: Array<number> = [5, 10, 15, 20, 30, 50, 100];
+	public countOptions: Array<number> = [5, 10, 15, 20, 30, 50, 100, 150, 180, 200];
 
-  public selectedCount: number;
-
-  private afs: AngularFirestore;
-
-	private measuresCollection: AngularFirestoreCollection<Measure>;
-  measures: Observable<Measure[]>;
+  measures$: Observable<Measure[]>;
+  countLimit$: BehaviorSubject<number|null>;
 
   constructor(afs: AngularFirestore) {
-    this.afs = afs;
-    this.selectedCount = 10;
-  	this.queryCollection();	
+    this.countLimit$ = new BehaviorSubject(10);
+    this.measures$ = combineLatest(
+      this.countLimit$
+    ).pipe(
+          switchMap(([count]) => 
+        afs.collection<Measure>('measures', ref => {
+          let query : firebase.firestore.Query = ref;
+          query = query.orderBy('timestamp', 'desc');
+          if (count) { query = query.limit(count) };
+          return query;
+        }).valueChanges()
+      ));
   }
 
-  ngOnInit() {    
+  countLimit(count: number) {
+    this.countLimit$.next(count); 
   }
-
-  queryCollection() {
-      this.measuresCollection = this.afs.collection<Measure>('measures', ref =>
-      ref
-      .orderBy('timestamp', 'desc')
-      .limit(this.selectedCount));
-
-      this.measures = this.measuresCollection.valueChanges();
-  }
-
-  selectCountOption(selectedCount: number): void {
-        this.selectedCount = selectedCount;
-        this.queryCollection();
-    }
 }
