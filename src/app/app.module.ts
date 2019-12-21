@@ -7,13 +7,15 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { firebaseSettings} from './firebase-settings';
 import { PingsComponent } from './pings/pings.component';
-import { LastMeasuresComponent } from './last-measures/last-measures.component'
+import { LastMeasuresComponent } from './last-measures/last-measures.component';
+import { MinutesSecondsPipe } from './minutes-seconds.pipe'
 
 @NgModule({
   declarations: [
     AppComponent,
     PingsComponent,
-    LastMeasuresComponent
+    LastMeasuresComponent,
+    MinutesSecondsPipe
   ],
   imports: [
     BrowserModule,

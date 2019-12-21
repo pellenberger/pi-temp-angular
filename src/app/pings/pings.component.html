@@ -6,7 +6,7 @@
 				<th></th>
 				<th></th>
 				<th></th>
-				<th colspan="3" class="pings-align-center">Delays in seconds</th>
+				<th colspan="3" class="pings-align-center">Delays</th>
 			</tr>
 			<tr>
 				<th scope="col">Date</th>
@@ -22,9 +22,9 @@
 				<td>{{ping.datetime}}</td>
 				<td>{{ping.ip}}</td>
 				<td>{{ping.room}}</td>
-				<td>{{ping.delayMeasure}}</td>
-				<td>{{ping.delayPush}}</td>
-				<td>{{ping.delayPing}}</td>
+				<td>{{ping.delayMeasure | minutesSeconds}}</td>
+				<td>{{ping.delayPush | minutesSeconds}}</td>
+				<td>{{ping.delayPing | minutesSeconds}}</td>
 			</tr>
 		</tbody>
 	</table>
