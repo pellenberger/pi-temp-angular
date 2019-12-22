@@ -4,10 +4,19 @@
   		<div class="col">
 		    <div ngbDropdown class="d-inline-block">
 		      <button class="btn btn-outline-primary" id="dropdownCount" ngbDropdownToggle>Last {{countLimit$.getValue()}} measures</button>
-		      <div ngbDropdownMenu aria-labelledby="dropdownCount">
+		      <div ngbDropdownMenu aria-labelledby="dropdownCount">		     
 		        <button *ngFor='let countOption of countOptions' (click)="countLimit(countOption)" ngbDropdownItem>{{countOption}}</button>
 		      </div>
 		    </div>
+  		</div>
+  		<div class="col">
+		    <div ngbDropdown class="d-inline-block">		      
+		      <button class="btn btn-outline-primary" id="dropdownRoom" ngbDropdownToggle>{{selectedRoom !== null ? selectedRoom : 'Filter by room'}}</button>
+		      <div ngbDropdownMenu aria-labelledby="dropdownRoom">
+		      	<button class="btn-clear" (click)="clearFilter()" [hidden]="selectedRoom === null" ngbDropdownItem>Clear filter</button>
+		        <button *ngFor='let room of rooms$ | async' (click)="filterByRoom(room.name)" ngbDropdownItem>{{room.name}}</button>
+		      </div>
+		    </div>		    
   		</div>
   	</div>
 
