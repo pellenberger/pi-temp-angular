@@ -5,3 +5,13 @@ table {
 .btn-clear {
 	font-weight: bold;
 }
+
+tbody > tr:first-child {
+	background-color: #c3e6cb;
+	font-weight: bold;
+}
+
+h2 {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
